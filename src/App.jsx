@@ -1,6 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import DanyaGeelyMK from './assets/geely.jpg';
 import MainContent from './components/MainContent.jsx';
 import Footer from './components/Footer.jsx';
 import Navigation from "./components/Navigation.jsx";
