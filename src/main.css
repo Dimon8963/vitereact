@@ -12,7 +12,7 @@ a{
     margin: 10px;
 }
 
-.users {
+/*.users {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -26,4 +26,42 @@ a{
     padding: 8px;
     outline: 2px solid #000;
     flex-basis: 25%;
+}*/
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
 }
+
+.filters label {
+    margin-right: 5px;
+}
+
+.filters input[type="range"],
+.filters input[type="text"],
+.filters select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.filters button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.users {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.user {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
