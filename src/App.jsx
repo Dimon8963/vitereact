@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation.jsx";
 import Welcome from './components/Welcome.jsx'
 import Field from './components/Field.jsx';
 import List from './components/List.jsx';
+import Task from './components/Task.jsx';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <Welcome name={"Dima"} lastname={"Pryimak"}/>
             <Field label={"Введіть текст"} placeholder={"..."}/>
             <List/>
+            <Task/>
             <MainContent/>
 
             <Footer/>
