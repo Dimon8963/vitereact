@@ -1,0 +1,29 @@
+textarea, p, input{
+    display: block;
+    outline: 2px solid #000;
+    padding: 8px;
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+    margin: 10px;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px auto;
+    outline: 2px solid #000;
+    padding: 8px;
+}
+
+.user {
+    margin: 8px;
+    padding: 8px;
+    outline: 2px solid #000;
+    flex-basis: 25%;
+}
