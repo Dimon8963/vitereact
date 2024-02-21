@@ -5,6 +5,7 @@ import Footer from './components/Footer.jsx';
 import Navigation from "./components/Navigation.jsx";
 import Welcome from './components/Welcome.jsx'
 import Field from './components/Field.jsx';
+import List from './components/List.jsx';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
 
             <Welcome name={"Dima"} lastname={"Pryimak"}/>
             <Field label={"Введіть текст"} placeholder={"..."}/>
-
+            <List/>
             <MainContent/>
 
             <Footer/>
