@@ -2,7 +2,7 @@
     {
       "name": "Dmytro",
       "absences": 25,
-      "city": "Tyshkivka"
+      "city": "Тишківка"
     },
     {
       "name": "Danya",
@@ -12,7 +12,7 @@
     {
       "name": "Vlad",
       "absences": 30,
-      "city": "Shkolne"
+      "city": "Popova"
     },
     {
       "name": "Nastya",
@@ -38,5 +38,10 @@
       "name": "Goncharenko",
       "absences": 3012,
       "city": "Kyiv"
+    },
+    {
+      "name": "Marina",
+      "absences": 30,
+      "city": "Shkolne"
     }
 ]
