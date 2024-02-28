@@ -60,9 +60,20 @@ select{
     padding: 10px;
 }
 
+.footer {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer p {
+    margin: 0; /* Видаляємо зовнішні відступи */
+}
+
 /*Для задач*/
 .task-form {
-    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 .task-form input[type="text"] {
@@ -105,5 +116,18 @@ select{
     text-align: center;
 
 }
+
+.developer-info {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 20px;
+}
+
+.developer-info p {
+    margin-bottom: 10px; /* Додаємо відступ між абзацами */
+}
+
 
 
