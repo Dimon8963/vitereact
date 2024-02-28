@@ -13,7 +13,7 @@ const Home = () => {
             <Field label={"Введіть текст"} placeholder={"..."}/>
             <List/>
             <Task/>
-            <MainContent/>
+            {/*<MainContent/>*/}
 
         </>
     )
