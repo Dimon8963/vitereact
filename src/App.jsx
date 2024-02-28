@@ -7,6 +7,8 @@ import Contacts from "./components/pages/Contacts.jsx";
 import NotFound from "./components/pages/NotFound.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./components/pages/About.jsx";
+import Services from "./components/pages/Services.jsx";
 
 function App() {
     return (
@@ -17,6 +19,8 @@ function App() {
                     <Route path="/" element={<Home />} /> {/*Головна сторінка*/}
                     <Route path="/contacts" element={<Contacts />} />
                     <Route path={"gallery"} element={<Gallery/>} />
+                    <Route path="/about" element={<About/>} />
+                    <Route path="/services" element={<Services />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
