@@ -21,14 +21,16 @@ function Navigation() {
                                   aria-current="page">Home</Link> {/* Додано посилання для "Home" */}
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About</a>
+                            <Link to="/about"
+                                  className="nav-link">About</Link> {/* Додано посилання для "About" */}
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Services</a>
+                            <Link to="/services"
+                                  className="nav-link">Services</Link> {/* Додано посилання для "Services" */}
                         </li>
                         <li className="nav-item">
                             <Link to="/contacts"
-                                  className="nav-link">Contact</Link> {/* Додано посилання для "Contacts" */}
+                                  className="nav-link">Contacts</Link> {/* Додано посилання для "Contacts" */}
                         </li>
                         <li className="nav-item">
                             <Link to="/gallery"
