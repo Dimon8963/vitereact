@@ -96,4 +96,14 @@ select{
     text-decoration: line-through;
 }
 
+.slider-container {
+    width: 80%; /* Ширина контейнера*/
+    margin: 0 auto; /* Це вирівняє контейнер по центру сторінки */
+}
+
+.image h3{
+    text-align: center;
+
+}
+
 
