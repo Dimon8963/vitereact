@@ -1,4 +1,5 @@
 import DanyaGeelyMK from "../assets/geely.jpg";
+import { Link, Outlet } from "react-router-dom"; // Додали імпорт компонента Link
 import React from "react";
 
 function Navigation() {
@@ -16,7 +17,8 @@ function Navigation() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            <Link to="/" className="nav-link active"
+                                  aria-current="page">Home</Link> {/* Додано посилання для "Home" */}
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">About</a>
@@ -25,7 +27,12 @@ function Navigation() {
                             <a className="nav-link" href="#">Services</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Contact</a>
+                            <Link to="/contacts"
+                                  className="nav-link">Contact</Link> {/* Додано посилання для "Contacts" */}
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/gallery"
+                                  className="nav-link">Gallery</Link> {/* Додано посилання для "Gallery" */}
                         </li>
                     </ul>
                     <form className="d-flex">
@@ -35,6 +42,7 @@ function Navigation() {
                     </form>
                 </div>
             </div>
+            <Outlet /> {/* Додали Outlet для відображення вмісту між посиланнями */}
         </nav>
     );
 }
