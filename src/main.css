@@ -12,6 +12,11 @@ a{
     margin: 10px;
 }
 
+.active {
+    color: #0a53be !important;
+    background-color: pink;
+}
+
 /*Список студентів*/
 .filters{
     margin: 50px auto;
