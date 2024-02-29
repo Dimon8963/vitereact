@@ -1,7 +1,8 @@
 import DanyaGeelyMK from "../assets/geely.jpg";
-import { Link, Outlet } from "react-router-dom"; // Додали імпорт компонента Link
+import { NavLink, Outlet } from "react-router-dom";
 import React from "react";
 import NavHistory from "./NavHistory.jsx";
+import "../main.css"; // Імпортуємо файли стилів для компонента Navigation
 
 function Navigation() {
     return (
@@ -18,24 +19,20 @@ function Navigation() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link to="/" className="nav-link active"
-                                  aria-current="page">Home</Link> {/* Додано посилання для "Home" */}
+                            <NavLink exact to="/" className="nav-link" activeClassName="active"
+                                     aria-current="page">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/about"
-                                  className="nav-link">About</Link> {/* Додано посилання для "About" */}
+                            <NavLink to="/about" className="nav-link" activeClassName="active">About</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/services"
-                                  className="nav-link">Services</Link> {/* Додано посилання для "Services" */}
+                            <NavLink to="/services" className="nav-link" activeClassName="active">Services</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/contacts"
-                                  className="nav-link">Contacts</Link> {/* Додано посилання для "Contacts" */}
+                            <NavLink to="/contacts" className="nav-link" activeClassName="active">Contacts</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/gallery"
-                                  className="nav-link">Gallery</Link> {/* Додано посилання для "Gallery" */}
+                            <NavLink to="/gallery" className="nav-link" activeClassName="active">Gallery</NavLink>
                         </li>
                     </ul>
                     <form className="d-flex">
@@ -45,8 +42,8 @@ function Navigation() {
                     </form>
                 </div>
             </div>
-            <Outlet /> {/* Додали Outlet для відображення вмісту між посиланнями */}
-            <NavHistory /> {/* Додали компонент NavHistory */}
+            <Outlet />
+            <NavHistory />
         </nav>
     );
 }
