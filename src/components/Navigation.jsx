@@ -1,6 +1,7 @@
 import DanyaGeelyMK from "../assets/geely.jpg";
 import { Link, Outlet } from "react-router-dom"; // Додали імпорт компонента Link
 import React from "react";
+import NavHistory from "./NavHistory.jsx";
 
 function Navigation() {
     return (
@@ -45,6 +46,7 @@ function Navigation() {
                 </div>
             </div>
             <Outlet /> {/* Додали Outlet для відображення вмісту між посиланнями */}
+            <NavHistory /> {/* Додали компонент NavHistory */}
         </nav>
     );
 }
