@@ -9,12 +9,14 @@ import Gallery from "./components/pages/Gallery.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./components/pages/About.jsx";
 import Services from "./components/pages/Services.jsx";
+import TestAPI from "./components/TestAPI.jsx";
 
 function App() {
     return (
         <>
             <BrowserRouter>
                 <Navigation />
+                <TestAPI />
                 <Routes>
                     <Route path="/" element={<Home />} /> {/*Головна сторінка*/}
                     <Route path="/contacts" element={<Contacts />} />
