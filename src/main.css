@@ -138,5 +138,47 @@ select{
     margin-bottom: 10px; /* Додаємо відступ між абзацами */
 }
 
+.pokeapi-button {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Робимо кнопку блоковим елементом */
+    margin: 0 auto; /* Автоматичний відступ зверху і знизу, і автоматичне вирівнювання по горизонталі */
+    width: fit-content; /* Ширина кнопки буде відповідати її вмісту */
+}
+
+.pokeapi-button:hover {
+    background-color: #d32f2f;
+}
+
+.pokeapi-button:focus {
+    outline: none;
+}
+
+.pokemon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pokemon-card {
+    text-align: center;
+    margin: 10px;
+    width: 20%; /* Ширина елемента - 20% від батьківського контейнера */
+}
+
+.pokemon-card h2 {
+    margin-bottom: 5px;
+}
+
+.pokemon-title {
+    margin: 20px 0;
+    text-align: center; /* Центруємо текст */
+}
+
 
 
