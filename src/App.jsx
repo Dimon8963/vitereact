@@ -20,11 +20,11 @@ function App() {
                 {/*<TestAPI />*/}
                 <Routes>
                     <Route path="/" element={<Home />} /> {/*Головна сторінка*/}
-                    <Route path="/contacts" element={<Contacts />} />
-                    <Route path={"gallery"} element={<Gallery/>} />
-                    <Route path="/about" element={<About/>} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/pokeapi" element={<PokeAPI />} />
+                    <Route path="contacts" element={<Contacts />} />
+                    <Route path="gallery" element={<Gallery/>} />
+                    <Route path="about" element={<About/>} />
+                    <Route path="services" element={<Services />} />
+                    <Route path="pokeapi" element={<PokeAPI />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
