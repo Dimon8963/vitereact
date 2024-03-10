@@ -1,7 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './components/Footer.jsx';
-import Navigation from "./components/Navigation.jsx";
+import Footer from './components/blocks/Footer.jsx';
+import Navigation from "./components/blocks/Navigation.jsx";
 import Home from "./components/pages/Home.jsx";
 import Contacts from "./components/pages/Contacts.jsx";
 import NotFound from "./components/pages/NotFound.jsx";
@@ -11,6 +11,7 @@ import About from "./components/pages/About.jsx";
 import Services from "./components/pages/Services.jsx";
 import TestAPI from "./components/TestAPI.jsx";
 import PokeAPI from "./components/PokeAPI.jsx";
+import TaskList from "./components/pages/Task.jsx";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path="gallery" element={<Gallery/>} />
                     <Route path="about" element={<About/>} />
                     <Route path="services" element={<Services />} />
+                    <Route path="task" element={<TaskList />} />
                     <Route path="pokeapi" element={<PokeAPI />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>

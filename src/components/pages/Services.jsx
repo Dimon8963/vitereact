@@ -1,8 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
+import {ThemeContext} from "../ThemeContext.jsx";
 
 const Services = () => {
+    const { lightMode } = useContext(ThemeContext);
+
+
     return (
-        <div>
+        <div
+            style={{
+                backgroundColor: lightMode ? "white" : "black",
+                color: lightMode ? "black" : "white"
+            }}
+        >
             <h2>Наші послуги</h2>
             <p>Ми пропонуємо широкий спектр послуг для наших клієнтів:</p>
             <ul>

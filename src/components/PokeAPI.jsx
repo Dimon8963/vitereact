@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import '../main.css'; // Імпорт CSS файлу для стилів
+import {ThemeContext} from "./ThemeContext.jsx";
 
 const PokemonInfo = () => {
     // Створення стану для списку покемонів, завантаження та помилок
     const [pokemonList, setPokemonList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { lightMode } = useContext(ThemeContext);
 
     // Ефект, який викликається при монтуванні компонента
     useEffect(() => {
@@ -43,7 +45,12 @@ const PokemonInfo = () => {
 
     // Виведення списку покемонів
     return (
-        <div>
+        <div
+            style={{
+                backgroundColor: lightMode ? "white" : "black",
+                color: lightMode ? "black" : "white"
+            }}
+        >
             {/* Заголовок списку покемонів з класом для стилізації */}
             <h1 className="pokemon-title">Pokemon List</h1>
             {/* Контейнер для карточок покемонів */}

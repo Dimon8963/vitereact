@@ -1,20 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
 import Welcome from "../Welcome.jsx";
 import Field from "../Field.jsx";
 import List from "../List.jsx";
-import Task from "../Task.jsx";
 import "../../main.css"
+import {ThemeContext} from "../ThemeContext.jsx";
 
 
 
 const Home = () => {
+    const { lightMode } = useContext(ThemeContext);
     return (
-        <div className="container"> {/* Додайте контейнер */}
+        <div className={"container"}
+             style={{
+                 backgroundColor: lightMode ? "white" : "black",
+                 color: lightMode ? "black" : "white"
+             }}
+        >
             <Welcome name={"Dima"} lastname={"Pryimak"}/>
             <Field label={"Введіть текст"} placeholder={"..."}/>
             <a href="/pokeapi" className="pokeapi-button">PokeAPI</a>
             <List/>
-            <Task/>
             {/*<MainContent/>*/}
 
         </div>
