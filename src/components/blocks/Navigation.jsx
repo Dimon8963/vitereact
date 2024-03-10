@@ -1,10 +1,15 @@
-import DanyaGeelyMK from "../assets/geely.jpg";
+import DanyaGeelyMK from "../../assets/geely.jpg";
 import { NavLink, Outlet } from "react-router-dom";
-import React from "react";
-import NavHistory from "./NavHistory.jsx";
-import "../main.css"; // Імпортуємо файли стилів для компонента Navigation
+import React, { useContext } from "react";
+import NavHistory from "../NavHistory.jsx";
+import "../../main.css"; // Імпортуємо файли стилів для компонента Navigation
+import { ThemeContext } from '../ThemeContext.jsx';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import Button from "@mui/material/Button";
 
 function Navigation() {
+    const { changeStyle, lightMode } = useContext(ThemeContext); // Деструктуризація lightMode з контексту
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
@@ -34,6 +39,17 @@ function Navigation() {
                         <li className="nav-item">
                             <NavLink to="/gallery" className="nav-link" activeClassName="active">Gallery</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink to="/task" className="nav-link" activeClassName="active">Task</NavLink>
+                        </li>
+                        <Button onClick={changeStyle}>
+                            {
+                                lightMode ?
+                                    <LightModeIcon />
+                                    :
+                                    <DarkModeIcon />
+                            }
+                        </Button>
                     </ul>
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search"
