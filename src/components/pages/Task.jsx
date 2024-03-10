@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import {useContext, useState} from 'react';
+import {ThemeContext} from "../ThemeContext.jsx";
 
 function TaskList() {
     // Стан для управління списком задач
     const [tasks, setTasks] = useState([]);
     // Стан для управління введенням нових задач
     const [newTask, setNewTask] = useState('');
+
+    const { lightMode } = useContext(ThemeContext);
 
     // Функція для додавання нової задачі до списку
     const addTask = () => {
@@ -32,7 +35,13 @@ function TaskList() {
 
     return (
         <>
-            <div className={'task-form'}>
+            <div
+                className={'task-form'}
+                style={{
+                    backgroundColor: lightMode ? "white" : "black",
+                    color: lightMode ? "black" : "white"
+                }}
+            >
                 {/* Поле введення для нової задачі */}
                 <input
                     type="text"
