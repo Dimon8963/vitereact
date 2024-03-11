@@ -12,7 +12,7 @@ import Modal from '@mui/material/Modal';
 
 function Navigation() {
     const { changeStyle, lightMode } = useContext(ThemeContext); // Деструктуризація lightMode з контексту
-    const { fontSize, increaseFontSize, decreaseFontSize } = useFontSize(); // Використовуйте useFontSize
+    const { increaseFontSize, decreaseFontSize } = useFontSize(); // Використовуйте useFontSize
     const [open, setOpen] = useState(false); // Стан для відкриття та закриття модального вікна
 
     const handleOpen = () => setOpen(true);
