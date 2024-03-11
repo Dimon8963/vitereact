@@ -9,7 +9,6 @@ import Gallery from "./components/pages/Gallery.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./components/pages/About.jsx";
 import Services from "./components/pages/Services.jsx";
-import TestAPI from "./components/TestAPI.jsx";
 import PokeAPI from "./components/PokeAPI.jsx";
 import TaskList from "./components/pages/Task.jsx";
 
