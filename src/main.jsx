@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './main.css'
 import { ThemeProvider } from './components/ThemeContext.jsx'
+import { FontSizeProvider} from "./components/Font.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <ThemeProvider>
-            <App />
-        </ThemeProvider>
+        <FontSizeProvider>
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
+        </FontSizeProvider>
     </React.StrictMode>,
 )

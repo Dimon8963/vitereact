@@ -1,15 +1,23 @@
 import DanyaGeelyMK from "../../assets/geely.jpg";
 import { NavLink, Outlet } from "react-router-dom";
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 import NavHistory from "../NavHistory.jsx";
 import "../../main.css"; // Імпортуємо файли стилів для компонента Navigation
 import { ThemeContext } from '../ThemeContext.jsx';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Button from "@mui/material/Button";
+import { useFontSize} from "../Font.jsx";
+import Modal from '@mui/material/Modal';
 
 function Navigation() {
     const { changeStyle, lightMode } = useContext(ThemeContext); // Деструктуризація lightMode з контексту
+    const { fontSize, increaseFontSize, decreaseFontSize } = useFontSize(); // Використовуйте useFontSize
+    const [open, setOpen] = useState(false); // Стан для відкриття та закриття модального вікна
+
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
@@ -50,6 +58,14 @@ function Navigation() {
                                     <DarkModeIcon />
                             }
                         </Button>
+                        <Button onClick={handleOpen}>A</Button> {/* Кнопка для відкриття модального вікна */}
+                        <Modal open={open} onClose={handleClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <div style={{ backgroundColor: 'white', padding: '20px', width: '200px', textAlign: 'center' }}>
+                                <h2>Change Font Size</h2>
+                                <Button onClick={increaseFontSize} style={{ fontSize: '20px', margin: '10px' }}>+</Button>
+                                <Button onClick={decreaseFontSize} style={{ fontSize: '20px', margin: '10px' }}>-</Button>
+                            </div>
+                        </Modal>
                     </ul>
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search"

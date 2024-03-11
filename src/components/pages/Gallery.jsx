@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import React, {useContext} from "react";
 import Slider from "react-slick";
 import {ThemeContext} from "../ThemeContext.jsx";
+/*import {useFontSize} from "../Font.jsx";*/
 
 const Gallery = () => {
     const { lightMode } = useContext(ThemeContext);
@@ -14,6 +15,7 @@ const Gallery = () => {
         slidesToScroll: 1,
         autoplay: true
     };
+    /*const { fontSize } = useFontSize();*/
 
     return (
         <div
@@ -21,6 +23,7 @@ const Gallery = () => {
              style={{
                  backgroundColor: lightMode ? "white" : "black",
                  color: lightMode ? "black" : "white"
+/*                 fontSize: `${fontSize}px`*/
              }}
         >
             <h1>Gallery</h1>
