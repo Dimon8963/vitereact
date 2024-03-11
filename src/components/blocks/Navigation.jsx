@@ -9,6 +9,8 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Button from "@mui/material/Button";
 import { useFontSize} from "../Font.jsx";
 import Modal from '@mui/material/Modal';
+import { useFontFamily } from '../FontFamilyContext.jsx';
+
 
 function Navigation() {
     const { changeStyle, lightMode } = useContext(ThemeContext); // Деструктуризація lightMode з контексту
@@ -17,6 +19,8 @@ function Navigation() {
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const { fontFamily, changeFontFamily } = useFontFamily();
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -64,6 +68,10 @@ function Navigation() {
                                 <h2>Change Font Size</h2>
                                 <Button onClick={increaseFontSize} style={{ fontSize: '20px', margin: '10px' }}>+</Button>
                                 <Button onClick={decreaseFontSize} style={{ fontSize: '20px', margin: '10px' }}>-</Button>
+                                <h2>Change Font Family</h2>
+                                <Button onClick={() => changeFontFamily('Arial')} style={{ margin: '10px' }}>Arial</Button>
+                                <Button onClick={() => changeFontFamily('Times New Roman')} style={{ margin: '10px' }}>Times New Roman</Button>
+                                <Button onClick={() => changeFontFamily('Courier New')} style={{ margin: '10px' }}>Courier New</Button>
                             </div>
                         </Modal>
                     </ul>

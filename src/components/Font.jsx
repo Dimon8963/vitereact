@@ -1,4 +1,3 @@
-// FontSizeContext.js
 import React, { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 

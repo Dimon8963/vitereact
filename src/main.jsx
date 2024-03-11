@@ -4,14 +4,17 @@ import App from './App.jsx'
 import './main.css'
 import { ThemeProvider } from './components/ThemeContext.jsx'
 import { FontSizeProvider} from "./components/Font.jsx";
+import {FontFamilyProvider} from "./components/FontFamilyContext.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <FontSizeProvider>
-            <ThemeProvider>
-                <App />
-            </ThemeProvider>
+            <FontFamilyProvider>
+                <ThemeProvider>
+                    <App />
+                </ThemeProvider>
+            </FontFamilyProvider>
         </FontSizeProvider>
     </React.StrictMode>,
 )

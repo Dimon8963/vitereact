@@ -1,6 +1,7 @@
 import {useContext, useState} from 'react';
 import {ThemeContext} from "../ThemeContext.jsx";
 import {useFontSize} from "../Font.jsx";
+import {useFontFamily} from "../FontFamilyContext.jsx";
 
 function TaskList() {
     // Стан для управління списком задач
@@ -10,6 +11,7 @@ function TaskList() {
 
     const { lightMode } = useContext(ThemeContext);
     const { fontSize } = useFontSize();
+    const { fontFamily } = useFontFamily();
 
     // Функція для додавання нової задачі до списку
     const addTask = () => {
@@ -42,7 +44,8 @@ function TaskList() {
                 style={{
                     backgroundColor: lightMode ? "white" : "black",
                     color: lightMode ? "black" : "white",
-                    fontSize: `${fontSize}px`
+                    fontSize: `${fontSize}px`,
+                    fontFamily: fontFamily
                 }}
             >
                 {/* Поле введення для нової задачі */}
