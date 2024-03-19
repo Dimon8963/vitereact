@@ -11,6 +11,11 @@ import About from "./components/pages/About.jsx";
 import Services from "./components/pages/Services.jsx";
 import PokeAPI from "./components/PokeAPI.jsx";
 import TaskList from "./components/pages/Task.jsx";
+import Login from "./components/Login.jsx";
+import Registration from "./components/Registration.jsx";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute  from "./components/PublicRoute.jsx";
+import Logout from "./components/Logout.jsx"
 
 function App() {
     return (
@@ -24,8 +29,25 @@ function App() {
                     <Route path="gallery" element={<Gallery/>} />
                     <Route path="about" element={<About/>} />
                     <Route path="services" element={<Services />} />
-                    <Route path="task" element={<TaskList />} />
+                    <Route path="task" element=
+                        {
+                            <PrivateRoute>
+                                <TaskList/>
+                            </PrivateRoute>
+                        } />
                     <Route path="pokeapi" element={<PokeAPI />} />
+                    <Route path="/login" element=
+                        {
+                            <PublicRoute >
+                                <Login />
+                            </ PublicRoute >
+                        } />
+                    <Route path="/registration" element={
+                        <PublicRoute >
+                            <Registration />
+                        </ PublicRoute >
+                    } />
+                    <Route path="/logout" element={<Logout />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
