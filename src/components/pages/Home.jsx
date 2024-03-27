@@ -1,4 +1,6 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {auth} from '../../fb-cfg.js';
+import {onAuthStateChanged} from 'firebase/auth';
 import Welcome from "../Welcome.jsx";
 import Field from "../Field.jsx";
 import List from "../List.jsx";
@@ -11,6 +13,16 @@ const Home = () => {
     const { lightMode } = useContext(ThemeContext);
     const { fontSize } = useFontSize();
     const { fontFamily } = useFontFamily();
+    const [ user, setUser ] = useState(null);
+
+    useEffect(() => {
+        // Очистити підписку, коли компонент знищується
+        return onAuthStateChanged(auth, (currentUser) => {
+            console.log(currentUser);
+            setUser(currentUser);
+        });
+    }, []);
+
     return (
         <div className={"container"}
              style={{
@@ -20,7 +32,10 @@ const Home = () => {
                  fontFamily: fontFamily
              }}
         >
-            <Welcome name={"Dima"} lastname={"Pryimak"}/>
+            <Welcome name={"Користувач"} lastname={
+                user ? user.displayName + " " + user.email : "Анонім"}
+            />
+            <img width={120} height={120} src={user ? user.photoURL : "https://via.placeholder.com/120"} alt="user"/>
             <Field label={"Введіть текст"} placeholder={"..."}/>
             <a href="/pokeapi" className="pokeapi-button">PokeAPI</a>
             <List/>
