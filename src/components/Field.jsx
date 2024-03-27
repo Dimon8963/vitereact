@@ -1,128 +1,194 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Button, TextField } from '@mui/material';
+import {useContext, useState, useEffect} from 'react';
+import PropTypes from "prop-types";
+import SendIcon from '@mui/icons-material/Send';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
+import {onAuthStateChanged} from 'firebase/auth';
+import CancelIcon from '@mui/icons-material/HighlightOff';
 
-function Field({ label, placeholder }) {
-    // Створюємо стан для значення поля вводу, відображення тексту, індексу редагування та тексту редагування
+// Firestore
+import { db } from "../fb-cfg.js";
+import { collection, addDoc, query, orderBy, onSnapshot } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+
+// Authentication
+import {auth} from "../fb-cfg.js";
+
+function Field({label, placeholder}) {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const q = query(collection(db, "messages"), orderBy("date"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const messages = snapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+            setDisplayedText(messages);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+
+    useEffect(() => {
+        // Очистити підписку, коли компонент знищується
+        return onAuthStateChanged(auth, (currentUser) => {
+            console.log(currentUser);
+            setUser(currentUser);
+        });
+    }, []);
+    // Використовуємо хук useState для створення змінних стану
+
+    // Змінна стану для зберігання значення інпута
     const [inputValue, setInputValue] = useState('');
+    // Змінна стану для зберігання коментарів
     const [displayedText, setDisplayedText] = useState([]);
-    const [editIndex, setEditIndex] = useState(-1);
-    const [editText, setEditText] = useState('');
+    // Змінна стану для зберігання індексу редагованого коментаря
+    const [editingIndex, setEditingIndex] = useState(-1);
+    // Змінна стану для зберігання тексту редагованого коментаря
+    const [editingText, setEditingText] = useState('');
 
-    // Кількість елементів на сторінці
-    const elementsOnPage = 5;
-
-    // Обробник зміни значення поля вводу
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
+    // Функція, яка викликається при кліку на кнопку редагування
+    const startEditing = (index) => {
+        setEditingIndex(index); // Починаємо редагування
+        setEditingText(displayedText[index]); // Зберігаємо текст коментаря
     };
 
-    // Обробник натискання клавіші Enter
+    // Функція, яка викликається при кліку на кнопку збереження редагування
+    const saveEdit = async (index) => {
+        const message = displayedText[index];
+        const messageRef = doc(db, "messages", message.id);
+
+        await updateDoc(messageRef, {
+            text: editingText,
+            edited: true, // Додати це поле
+            date_edited: new Date().toISOString()
+            // Дата не змінюється
+
+        });
+        console.log('updated');
+        setEditingIndex(-1);
+    };
+
+
+    // Функція, яка викликається при зміні значення в інпуті
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value); // Зберігаємо значення інпута
+    }
+
+    // Функція, яка викликається при натисканні на клавішу Enter в інпуті
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            addItemToTheEndOfArray(inputValue);
-            setInputValue('');
+            sendText();
         }
     };
 
-    // Функція для видалення елемента з масиву за індексом
-    const deleteItemFromArray = (index) => {
-        setDisplayedText([...displayedText].filter((_, i) => i !== index));
+    const handleOnClick = () => {
+        sendText();
+    }
+
+    const sendText = async () => {
+        if (inputValue.trim()) {
+            await addDoc(collection(db, "messages"), {
+                text: inputValue,
+                date: new Date().toISOString(),
+                edited: false, // Додати це поле
+                date_edited: null, // Додати це поле
+                author: user ? user.displayName : 'Anonymous',
+                userId: user ? user.uid : null // Додати це поле
+            });
+
+            setInputValue('');
+        }
+    }
+
+
+    // Функція, яка видаляє коментар
+    const deleteComment = async (index) => {
+        const message = displayedText[index];
+        const messageRef = doc(db, "messages", message.id);
+
+        await deleteDoc(messageRef);
     };
 
-    // Функція для додавання елемента до кінця масиву
-    const addItemToTheEndOfArray = (text) => {
-        setDisplayedText([...displayedText, text]);
-    };
+    // Функція, яка рендерить коментарі
+    const renderComment = (comment, index) => {
+        const isEditing = index === editingIndex;
+        const isCurrentUser = user && user.uid === comment.userId; // Перевірка, чи поточний користувач є автором
 
-    // Функція для видалення коментаря за індексом
-    const deleteComment = (index) => {
-        deleteItemFromArray(index);
-    };
-
-    // Функція для редагування коментаря
-    const editComment = (index, text) => {
-        setEditIndex(index);
-        setEditText(text);
-    };
-
-    // Функція для відображення коментарів
-    const showComments = (comments) => {
-        if (comments.length > 0) {
-            if (comments.length > elementsOnPage) {
-                deleteComment(0);
-            }
-
-            return comments.map((comment, index) => {
-                return (
-                    <p key={index}>
-                        {index === editIndex ? (
+        return (
+            <div key={comment.id || index}>
+                {isEditing ? (
+                    <textarea
+                        value={editingText}
+                        onChange={(e) => setEditingText(e.target.value)}
+                    />
+                ) : (
+                    <p>
+                        {comment.text}
+                        <br/>
+                        <small>
+                            (Posted {new Date(comment.date).toLocaleString()} by {comment.author})
+                        </small>
+                        <br/>
+                        { /*check if the message was edited and display the date */ }
+                        {comment.edited && (
+                            <small>
+                                (Edited {new Date(comment.date_edited).toLocaleString()})
+                            </small>
+                        )}
+                    </p>
+                )}
+                {isCurrentUser && (
+                    <>
+                        {isEditing ? (
                             <>
-                                {/* Поле вводу для редагування тексту коментаря */}
-                                <TextField
-                                    value={editText}
-                                    onChange={(e) => setEditText(e.target.value)}
-                                />
-                                {/* Кнопка для збереження редагованого коментаря */}
-                                <Button
-                                    onClick={() => {
-                                        const updatedComments = [...displayedText];
-                                        updatedComments[index] = editText;
-                                        setDisplayedText(updatedComments);
-                                        setEditIndex(-1);
-                                        setEditText('');
-                                    }}
-                                >
-                                    Save
-                                </Button>
-                                {/* Кнопка для скасування редагування коментаря */}
-                                <Button
-                                    onClick={() => {
-                                        setEditIndex(-1);
-                                        setEditText('');
-                                    }}
-                                >
-                                    Cancel
-                                </Button>
+                                <SaveIcon onClick={() => saveEdit(index)} />
+                                <CancelIcon onClick={() => setEditingIndex(-1)} />
                             </>
                         ) : (
                             <>
-                                {/* Відображення тексту коментаря */}
-                                {comment}
-                                {/* Кнопка для видалення коментаря */}
-                                <Button onClick={() => deleteComment(index)}>Delete</Button>
-                                {/* Кнопка для редагування коментаря */}
-                                <Button onClick={() => editComment(index, comment)}>Edit</Button>
+                                <DeleteIcon onClick={() => deleteComment(index)} />
+                                <ModeEditIcon onClick={() => {
+                                    startEditing(index);
+                                    setEditingText(comment.text);
+                                }} />
                             </>
                         )}
-                    </p>
-                );
-            });
-        }
+                    </>
+                )}
+            </div>
+        );
     };
 
+
+
+    // Повертаємо JSX
     return (
-        <div>
-            {/* Мітка для поля вводу */}
-            <label>{label}</label>
-            {/* Поле вводу для нового коментаря */}
-            <TextField
-                placeholder={placeholder}
-                value={inputValue}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyPress}
-            />
-            {/* Відображення коментарів */}
-            {showComments(displayedText)}
+        <div
+            className={"main"}
+
+        >
+            <div className={'chat-input'}>
+                <label>{label}</label>
+                <input
+                    className={'filterButton'}
+                    placeholder={placeholder} // Використовуємо передані пропси
+                    value={inputValue} // Використовуємо змінну стану
+                    onChange={handleInputChange} // Викликаємо функцію при зміні значення в інпуті
+                    onKeyDown={handleKeyPress}
+                />
+                <SendIcon onClick={handleOnClick} />
+            </div>
+            {displayedText.map(renderComment)} {/*Викликаємо функцію для кожного елементу масиву*/}
         </div>
     );
 }
 
-// Перевірка типів пропсів
+// Валідація пропсів
 Field.propTypes = {
     label: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
 };
 
-// Експорт компоненту Field
+// Експортуємо Field
 export default Field;
