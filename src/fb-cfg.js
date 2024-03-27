@@ -1,9 +1,11 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
+/*import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";*/
+import { getDatabase } from "firebase/database";
+
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -20,6 +22,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-/*const analytics = getAnalytics(app);*/
+/*initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider('6LeYFaYpAAAAAOPHZeTWJq2XRBRPZftDlhT8F6Vv'),
+    isTokenAutoRefreshEnabled: true
+});*/
 
-export const auth = getAuth();
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+export const database = getDatabase(app);
