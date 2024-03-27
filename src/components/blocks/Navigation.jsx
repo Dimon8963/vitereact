@@ -53,6 +53,9 @@ function Navigation() {
                             <NavLink to="/gallery" className="nav-link" activeClassName="active">Gallery</NavLink>
                         </li>
                         <li className="nav-item">
+                            <NavLink to="/game" className="nav-link" activeClassName="active">Game</NavLink>
+                        </li>
+                        <li className="nav-item">
                             <NavLink to="/task" className="nav-link" activeClassName="active">Task</NavLink>
                         </li>
                     </ul>
