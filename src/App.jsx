@@ -17,48 +17,55 @@ import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute  from "./components/PublicRoute.jsx";
 import Logout from "./components/Logout.jsx"
 import Game from "./components/pages/Game.jsx";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import heartClicksReducer from './redux/reducers.jsx';
+
+const store = createStore(heartClicksReducer);
 
 function App() {
     return (
         <>
-            <BrowserRouter>
-                <Navigation />
-                {/*<TestAPI />*/}
-                <Routes>
-                    <Route path="/" element={<Home />} /> {/*Головна сторінка*/}
-                    <Route path="contacts" element={<Contacts />} />
-                    <Route path="gallery" element={<Gallery/>} />
-                    <Route path="about" element={<About/>} />
-                    <Route path="services" element={<Services />} />
-                    <Route path="task" element=
-                        {
-                            <PrivateRoute>
-                                <TaskList/>
-                            </PrivateRoute>
-                        } />
-                    <Route path="game" element=
-                        {
-                            <PrivateRoute>
-                                <Game/>
-                            </PrivateRoute>
-                        } />
-                    <Route path="pokeapi" element={<PokeAPI />} />
-                    <Route path="/login" element=
-                        {
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Navigation />
+                    {/*<TestAPI />*/}
+                    <Routes>
+                        <Route path="/" element={<Home />} /> {/*Головна сторінка*/}
+                        <Route path="contacts" element={<Contacts />} />
+                        <Route path="gallery" element={<Gallery/>} />
+                        <Route path="about" element={<About/>} />
+                        <Route path="services" element={<Services />} />
+                        <Route path="task" element=
+                            {
+                                <PrivateRoute>
+                                    <TaskList/>
+                                </PrivateRoute>
+                            } />
+                        <Route path="game" element=
+                            {
+                                <PrivateRoute>
+                                    <Game/>
+                                </PrivateRoute>
+                            } />
+                        <Route path="pokeapi" element={<PokeAPI />} />
+                        <Route path="/login" element=
+                            {
+                                <PublicRoute >
+                                    <Login />
+                                </ PublicRoute >
+                            } />
+                        <Route path="/registration" element={
                             <PublicRoute >
-                                <Login />
+                                <Registration />
                             </ PublicRoute >
                         } />
-                    <Route path="/registration" element={
-                        <PublicRoute >
-                            <Registration />
-                        </ PublicRoute >
-                    } />
-                    <Route path="/logout" element={<Logout />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </BrowserRouter>
-            <Footer />
+                        <Route path="/logout" element={<Logout />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </BrowserRouter>
+                <Footer />
+            </Provider>
         </>
     );
 }
