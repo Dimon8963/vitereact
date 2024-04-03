@@ -13,6 +13,11 @@
     width: 34px;
 }
 
+.pole{
+    margin-left: 30px;
+    margin-top: 33px;
+}
+
 .board-row:after {
     clear: both;
     content: "";
@@ -26,4 +31,6 @@
 
 .game-info {
     margin-left: 20px;
+    font-size: 24px;
+    font-weight: bold;
 }
