@@ -44,12 +44,22 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
             />
 
-            <ReCAPTCHA
+           <ReCAPTCHA
                 sitekey="6LeYFaYpAAAAAOPHZeTWJq2XRBRPZftDlhT8F6Vv"
                 onChange={onCaptchaChange}
             />
-            <button onClick={handleLogin} disabled={!captchaVerified} >Login with Email</button>
-            <button onClick={handleGoogleLogin} disabled={!captchaVerified} >Login with Google</button>
+            <button
+                onClick={handleLogin}
+                disabled={!captchaVerified}
+            >
+                Login with Email
+            </button>
+            <button
+                onClick={handleGoogleLogin}
+                disabled={!captchaVerified}
+            >
+                Login with Google
+            </button>
         </div>
     );
 }
