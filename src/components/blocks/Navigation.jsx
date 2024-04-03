@@ -37,42 +37,42 @@ function Navigation() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink to="/" exact={true} className="nav-link" activeClassName="active"
+                            <NavLink to="/" exact="true" className="nav-link" activeclassname="active"
                                      aria-current="page">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/about" className="nav-link" activeClassName="active">About</NavLink>
+                            <NavLink to="/about" className="nav-link" activeclassname="active">About</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/services" className="nav-link" activeClassName="active">Services</NavLink>
+                            <NavLink to="/services" className="nav-link" activeclassname="active">Services</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/contacts" className="nav-link" activeClassName="active">Contacts</NavLink>
+                            <NavLink to="/contacts" className="nav-link" activeclassname="active">Contacts</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/gallery" className="nav-link" activeClassName="active">Gallery</NavLink>
+                            <NavLink to="/gallery" className="nav-link" activeclassname="active">Gallery</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/game" className="nav-link" activeClassName="active">Game</NavLink>
+                            <NavLink to="/game" className="nav-link" activeclassname="active">Game</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/task" className="nav-link" activeClassName="active">Task</NavLink>
+                            <NavLink to="/task" className="nav-link" activeclassname="active">Task</NavLink>
                         </li>
                     </ul>
                     <ul className="navbar-nav">
                         {!loggedIn ? (
                             <>
                                 <li className="nav-item">
-                                    <NavLink to="/login" className="nav-link" activeClassName="active">Login</NavLink>
+                                    <NavLink to="/login" className="nav-link" activeclassname="active">Login</NavLink>
                                 </li>
                                 <li className="nav-item">
                                     <NavLink to="/registration" className="nav-link"
-                                             activeClassName="active">Register</NavLink>
+                                             activeclassname="active">Register</NavLink>
                                 </li>
                             </>
                         ) : (
                             <li className="nav-item">
-                                <NavLink to="/logout" className="nav-link" activeClassName="active">Logout</NavLink>
+                                <NavLink to="/logout" className="nav-link" activeclassname="active">Logout</NavLink>
                             </li>
                         )}
                     </ul>
